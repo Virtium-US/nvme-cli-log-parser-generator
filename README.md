@@ -18,7 +18,7 @@ Inside the repository there is a script.py, the program you will run to generate
 The program takes several arguments: file name, the log type + the series of the NVMe, log length, the log's number, and a description of what the pluggin is doing.
 
 ```
-python3 script.py --help
+$ python3 script.py --help
 
 usage: script.py [-h] file series len num desc [desc ...]
 
