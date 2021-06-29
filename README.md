@@ -1,4 +1,4 @@
-# NVMe cli log parser genderator
+# NVMe-cli Log Parser Generator
 
 A python command line script that gemerates a NVMe parser code for the [Virtium Plugin](https://github.com/Virtium-US/nvme-cli/tree/master/plugins/virtium)
 
