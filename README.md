@@ -42,3 +42,5 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
 ```
+
+***NOTE: The program is made to create a generalized format for a parser. Special cases, such as version8 from the vs log, need to be hand coded into the plugin***
