@@ -1,0 +1,179 @@
+offset,Attribute name,Description,SLC/TLC,Value Type,Notes
+0,VERSION 8,Number starting at zero increasing  by 1 for each revision of this data  structure.,DON'T CARE,-,
+8,"Re-allocated Sector  
+Count",Tracks the number of bad TLC die  blocks.Tracks the number of  blocks in the bad block list.,TLC,block count,
+16,Slc Re-allocated Sector  Count,"Tracks the number of bad SLC die  blocks. 
+This attribute tracks the number  of times that data was physically  moved to a different location in  flash because of an error.",SSLC,block count,
+24,Power-on Hours Count,Count of the number of hours in  power‐on state. The raw value of this attribute shows total count of  hours including power-on and idle  state hours.,DON'T CARE,Hours,
+32,"Uncorrectable Error  
+Count (XOR Fail)",This attribute tracks the number  of uncorrectable XOR (U-XOR) TLC  errors.,TLC,Count,
+40,"Uncorrectable Error  
+Count (XOR Fail)",This attribute tracks the number  of uncorrectable XOR (U-XOR) SLC  errors,SSLC & DSLC,Count,
+48,ECCUnc,"This attribute tracks the number  of TLC uncorrectable ECC errors  (UECC), which is corrected by XOR",TLC,Count,
+56,Soft LDPC correction  event count,Soft LDPC pass count,SSLC/TLC,Count,
+64,TLC read retry fail,Reports the number of times it  failed after whole retry flow in  TLC. (Fails after Stage 3 which  triggers soft decode),TLC,Count,
+72,SLC read retry fail,Reports the number of times it failed after whole retry flow in SLC. (Fails after Stage 3 which triggers soft decode),SLC,Count,
+80,Temperature,Current Temp on Drive,DON'T CARE,ASIC Temp in deg C,
+88,Read retry trigger,"Counts the number of times the  first re-read (in Stage 1 of  
+recovery flow) was triggered and  passed.",SSLC/TLC,Count of pass events,
+96,Total LBAs Written,Host Data Written (in (512B)  sectors),DON'T CARE,"Data written in 512B 
+sectors",
+104,Total LBAs Read,Host Data Read (in (512B) sectors),DON'T CARE,"Data read in 
+512B sectors",
+112,PS3 Count,Partial sleep,DON'T CARE,Count,
+120,PS4 Count,Slumber entry,DON'T CARE,Count,
+128,L1.2 Count,L1.2 Entry / Exit,DON'T CARE,Count,
+136,"TLC Available Spare  
+Blocks","Number of reserve (over‐ 
+provisioned) Super blocks at mfg.  Decrements with grown defects.",TLC,"Super block 
+count",
+144,"SLC Available Spare  
+Blocks","Number of spare(over‐ 
+provisioned) super blocks at mfg.  Decrements with grown defects",SSLC,"Super block 
+count",
+152,WearRangeDelta,"Returns the percent difference in  wear between the mostworn  block and least‐worn block 
+normalized to total possible cycle  count (GRTPE)",TLC,% value,
+160,WearRangeDelta,Returns the percent difference in  wear between the mostworn  block and least‐worn blocknormalized to total possible cycle count (GRTPE). Only flexible count (GRTPE). Only flexible,SSLC,% value,
+168,High Temp,Lifetime High Temp,DON'T CARE,ASIC Temp in deg C,
+176,Low Temp,Lifetime Low Temp,DON'T CARE,ASIC Temp in deg C,
+184,Avg Temp,Lifetime Average Temp,DON'T CARE,ASIC Temp in deg C,
+192,Recent High,High Temp since last power cycle,don't care,ASIC Temp in deg C,
+200,Recent Low,Low Temp since last power cycle,don't care,ASIC Temp in deg C,
+208,auto-calibration fail,This attribute tracks the number  of auto-calibration fails,SLC/TLC,ASIC Temp in deg C,
+216,SLC Nand Data Read,"Total NAND Data Read (in (512B)  sectors), including host and  background.",SSLC,NAND read in 512B sectors,
+224,TLC Nand Data Read,"Total NAND Data Read (in (512B)  sectors), including host and  background.",TLC,NAND read in 512B sectors,
+232,Valid block counts,Current number of 4K units valid.,DON'T CARE,Count,
+240,SLC NAND Writes,"SLC NAND Writes(in (512B)  
+sectors) (including Host and  background)",SSLC,"NAND writes in 512B 
+sectors",
+248,TLC NAND Writes,"TLC NAND writes (in (512B)  
+sectors) (includes only data  
+blocks)",TLC,"NAND writes in 512B 
+sectors",
+256,"TLC/QLC Wearing  
+Leveling Count","Number QLC wear leveling event.  The event count is per superblock  base . For example if the count =  
+100. Then the number of NAND  write due to wear leveling = 100 x  QLC superblock size of the SSD.",TLC,Count,
+264,SLC Wearing Leveling Count,Number SLC wear leveling event. The event count is per superblock base. For example if the count = 100. Then the number of NAND write due to wear leveling = 100 x SLC superblock size of the SSD.,SSLC,Count,
+272,TLC NAND writes due to  Wearing Leveling,Then the number of NAND write  due to wear leveling = 100 x TLC  superblock size of the SSD. (in  (512B) sectors),TLC,"NAND writes in 512B 
+sectors",
+280,SLC NAND writes due to  Wearing Leveling,Then the number of NAND write  due to wear leveling = 100 x SLC  superblock size of the SSD. (in  (512B) sectors),SSLC,"NAND writes in 512B 
+sectors",
+288,Current TLC spare super  block,Number of spare TLC Super block  (not NAND block but super block),TLC,"Super block 
+count",
+296,Current SLC spare super  block,Number of spare SLC Super block  (not NAND block but super block),SSLC,"Super block 
+count",
+304,SLC to TLC defrag count,Count number of cumulative  eviction event count (from SLC to  TLC) (count in number of TLC  blocks),DON'T CARE,Count,
+312,TLC Defrag count,Data written due to TLC-TLC  defrag (in (512B) sectors),TLC,"NAND writes in 512B 
+sectors",
+320,SLC Defrag count,Data written due to SSLC-SSLC  defrag (in (512B) sectors),SSLC,"NAND writes in 512B 
+sectors",
+328,Read back fail count,Read back fail during TLC eviction,DON'T CARE,Count,
+336,TLC Program Fail,TLC Program Fail Count,TLC,Count,
+344,SLC Program Fail,SLC Program Fail Count,SSLC,Count,
+352,TLC Erase Fail,TLC Erase Fail Count,TLC,Count,
+360,SLC Erase Fail,SLC Erase Fail Count,SSLC,Count,
+368,TLC Erase cycle average,TLC Erase count,TLC,Count,
+376,TLC Erase cycle Max,TLC Erase count,TLC,Count,
+384,TLC Erase cycle Min,TLC Erase count,TLC,Count,
+392,SLC Erase cycle average,SLC Erase count(Include the  system blocks),SSLC,Count,
+400,SLC Erase cycle Max,SLC Erase Count (Include the  system blocks),SSLC,Count,
+408,SLC Erase cycle Min,SLC Erase Count (Include the  system blocks),SSLC,Count,
+416,PS0 to PS1 Entry,Only for thermal throttle including  APST (ignore Host requested),DON'T CARE,Count,
+424,PS1 to PS0 Exit,Only for thermal throttle including  APST (ignore Host requested),DON'T CARE,Count,
+432,PS1 to PS2 Entry,Only for thermal throttle including  APST (ignore Host requested),DON'T CARE,Count,
+440,PS2 to PS1 Exit,Only for thermal throttle including  APST (ignore Host requested),DON'T CARE,Count,
+448,PS2 to PS Shut Down  Entry,Only for thermal throttle including  APST (ignore Host requested),DON'T CARE,Count,
+456,Link downshift,Records the # of times PCIe link is  lost,DON'T CARE,Count,
+464,Idle Sleep Count,,DON'T CARE,Count,
+472,L1 event count,L1 event count,DON'T CARE,Count,
+480,ECRC event count,ECRC event count for link issues,DON'T CARE,Count,
+488,LCRC event count,LCRC event count for link issues,DON'T CARE,Count,
+496,SLC2TLC Data Eviction  Idle,Data in sectors evicted from SLC  to TLC/QLC in sectors during Idle,DON'T CARE,"NAND writes in 512B 
+sectors",
+504,SLC2TLC Data Eviction  Runtime,Data in sectors evicted from SLC  to TLC/QLC in sectors during  runtime,DON'T CARE,"NAND writes in 512B 
+sectors",
+512,DRAM ECC Corrected,Counter of number of DRAM single fail bits that are corrected by DRAM ECC,DON'T CARE,Count,
+520,SRAM ECC Corrected,Counter of number of SRAM single  fail bits that are corrected by  SRAM ECC,DON'T CARE,Count,
+528,E2E fail detected,Counter of number of times we  detect an CRC error (even if host  does not read),DON'T CARE,Count,
+536,PS3.5 Count,Counts the # of times the drive  enters the low power DRAM state  before entering PS4,DON'T CARE,Count,
+544,Throttling Light Count,Counts the number of times drive  entered and exited light throttle,DON'T CARE,Count,
+552,Throttling Heavy Count,Counts the number of times drive  entered and exited heavy throttle,DON'T CARE,Count,
+560,ThrottlingLightDuration,Duration for the drive in light  throttle,DON'T CARE,Seconds,
+568,ThrottlingHeavyDuration,Duration for the drive in heavy  throttle,DON'T CARE,Seconds,
+576,Retry Count,Counts the number of times read retry options were triggered and  passed. (This means it did not  trigger LDPC),SLC/DSLC & TLC,Count,
+584,Soft Decode count,count the Soft Decode,SLC/DSLC & TLC,Count,
+592,ManfBadBlocks,Tracks the number of bad TLC die  blocks during manufacturing. This attribute tracks the number  of blocks reported bad during the  manufacturing flow,TLC,"Die block 
+count",
+600,ManfBadBlocksWorst,Tracks the worst case plane with  bad TLC die blocks during manufacturing. This attribute tracks the max  number of blocks reported bad on  a plane during the manufacturing  flow,TLC,"Die block 
+count",
+608,SLC Valid block counts,SLC Current number of 4K units  valid.,SSLC,4k units,
+616,TLC Valid block counts,TLC Current number of 4K units  valid.,TLC,4k units,
+624,SLC System Block Writes,"SLC NAND writes (in (512B)  
+sectors) (includes only system  blocks)",SSLC,"NAND writes in 512B 
+sectors",
+632,SLC Writes due to read  disturb,Writes in SLC after read disturb  limit is triggered (doesn't matter if  it is open/closed block),SSLC & DSLC,"NAND writes in 512B 
+sectors",
+640,TLC writes due to read  disturb,Writes in TLC after read disturb  limit is triggered (doesn't matter if  it is open/closed block),TLC,"NAND writes in 512B 
+sectors",
+648,Max Open Block SSGS  Count,Count max number of open SSGS  blocks,DON'T CARE,Count,
+656,Max Closed Block SSGS  Count,Count max number of closed SSGS  blocks,DON'T CARE,Count,
+664,L2P Table Swap,L2P Table Swap Count,DON'T CARE,Count,
+672,Legacy(Ignore),,,,
+680,SLC Max CW error count  with RR pass,Max correctable bit error count in  a CW,SSLC & DSLC,Count,
+688,TLC/QLC Max CW error  count with RR pass,Max correctable bit error count in  a CW,TLC,Count,
+696,Total Erase Pool Block  Count,"Counts the number of blocks in  the spare pool which is a  
+combination of TLC",TLC,Count,
+704,DSLC blocks in link table,Counts the number of DSLC blocks that are in use,DSLC,Count,
+712,Max DSLC Erase Cycle  Count,Reports the maximum cycle count  on a DSLC block,DSLC,Count,
+720,Avg DSLC Erase Cycle  Count,Reports the average cycle count  on a DSLC block,DSLC,Count,
+728,DSLC NAND Write,NAND Writes in DSLC (in (512B)  sectors),DSLC,"NAND writes in 512B 
+sectors",
+736,DSLC NAND Read,NAND Reads in DSLC (in (512B)  sectors),DSLC,"NAND writes in 512B 
+sectors",
+744,DSLC to DSLC Defrag  count,Data written due to DSLC defrag in  512B sectors,"DSLC to DSLC, SSLC  to DSLC","NAND writes in 512B 
+sectors",
+752,DSLC Program Fail,Counts the number of program  fails during DSLC operation,DSLC,Count,
+760,DSLC Erase Fail,Counts the number of erase fails  during DSLC operation,DSLC,Count,
+768,DSLC Retired Blocks,Count the number of run time bad  blocks during DSLC operation,DSLC,"Die block 
+count",
+776,DSLC Allocated Size,Reports the data allocated to  Dynamic SLC by the FW,DSLC,Sectors,
+784,Recondition counts,Count of number of TLC blocks  reconditioned,TLC,Count,
+792,MinDSLCEraseCount,Reports the min cycle count on a  DSLC block,DSLC,Count,
+800,MaxTotalEraseCount,Reports the max total erase count  on a DSLC/TLC block,DSLC,Count,
+808,MinTotalEraseCount,Reports the min total erase count  on a DSLC/TLC block,DSLC/TLC,Count,
+816,AvgTotalEraseCount,Reports the avg total erase count  on a DSLC/TLC block,DSLC/TLC,Count,
+824,Max Open SSGS Count,Counts Max open SSGS,DON'T CARE,Count,
+832,Max Closed SSGS Count,Counts Max close SSGS,DON'T CARE,Count,
+840,SlcDummyWrites,Reports the dummy writes done  by the FW,SSLC,"NAND writes in 512B 
+sectors",
+848,TlcDummyWrites,Reports the dummy writes done  by the FW,TLC,"NAND writes in 512B 
+sectors",
+856,DslcDummyWrites,Reports the dummy writes done  by the FW,DSLC,"NAND writes in 512B 
+sectors",
+864,Legacy(Ignore),,,,
+872,DummyReads,Reports the dummy reads done by  the FW,DON'T CARE,Reads in 512B sectors,
+880,CoreDumpCount,Reports the number of core  dumps after the FW hits a corner  case,DON'T CARE,Count,
+888,DataTrim,Reports the number of sectors  trimmed by the host,DON'T CARE,Data in 512B sectors,
+896,Legacy(Ignore),,,,
+904,Legacy(Ignore),,,,
+912,Legacy(Ignore),,,,
+920,Legacy(Ignore),,,,
+928,Legacy(Ignore),,,,
+936,Legacy(Ignore),,,,
+944,Legacy(Ignore),,,,
+952,Legacy(Ignore),,,,
+960,Legacy(Ignore),,,,
+968,Legacy(Ignore),,,,
+976,Legacy(Ignore),,,,
+984,Legacy(Ignore),,,,
+992,Legacy(Ignore),,,,
+1000,TLC WAI with DSLC as  TLC Size,TLC WAI *100 value(Without separate DSLC erase count from TLC),DON'T CARE,WAI Ratio,
+1008,TLC WAI with DSLC as  SLC Size,TLC WAI *100 value(Separate  DSLC erase count from TLC),DON'T CARE,WAI Ratio,
+1016,SLC WAI,SLC WAI *100,SSLC,WAI Ratio,
+1024,TLC Total Erase Count,Sum of the TLC blockTotal Erase  Count,TLC,Count,
+1032,SLC Total Erase Count,Sum of the SLC block Total Erase  Count,SSLC,Count,
+1040,DSLC Total Erase Count,Sum of DSLC block Total Erase  Count,DSLC,Count,
+1048,TLC block sector count,Sector counts of a TLC super block,TLC,Count,
+1056,Map Block Pop count,Counts the number of Map block  usage,SLC,Count,
+1064,GWPro Block Pop count,Counts the number of GWPro  block usage,SLC,Count,
+1072,DRAM Retrain Count,Counts the DRAM Retrain,DON'T CARE,Count,
