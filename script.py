@@ -64,13 +64,13 @@ def gen_struct_body(name,body,size,count):
         decleration = 'uint8_t ' + n + ';'
     else:
         decleration = 'uint8_t ' + n +'[' + str(size) +'];'
-    body = body + decleration + '\n    '
+    body = body + decleration + '\n\t'
     return body, count
 
 '''generates the struct, takes the file list and the series name returns a formatted string for a struct'''        
 def create_struct(file,series_name):
     struct_header = 'typedef struct _' + series_name + '{\n'
-    struct_body = '    '
+    struct_body = '\t'
     ign_count = 1
     for i in range(1,len(file)):
         if '-' in file[i][0]:
@@ -83,7 +83,7 @@ def create_struct(file,series_name):
                 size = 8
         nm = file[i][1].replace('\n','')
         struct_body, ign_count = gen_struct_body(nm,struct_body,size,ign_count)
-    struct = struct_header + struct_body[:-4] + '} ' + series_name
+    struct = struct_header + struct_body[:-1] + '} ' + series_name + ';'
     return struct
 
 '''
@@ -92,12 +92,12 @@ def create_struct(file,series_name):
 '''
 def create_print(series_name):
     funct_header = 'static void print_' + series_name + '_info(' + series_name + '* data_block) {\n'
-    funct_body = '    '
+    funct_body = '\t'
     for tup in variable_ls:
         if tup[1] <8:
-            print_s = 'printf("' + tup[0] + ': %d\\n", data_block->' + tup[0] + ');\n    '
+            print_s = 'printf("' + tup[0] + ': %d\\n", data_block->' + tup[0] + ');\n\t'
         else:
-            print_s = 'printf("' + tup[0] + ': %ld\\n", data_block->' + tup[0] + ');\n    '
+            print_s = 'printf("' + tup[0] + ': %ld\\n", data_block->' + tup[0] + ');\n\t'
         if 'ignore' in tup[0]:
             pass
         elif 'reserve' in tup[0]:
@@ -105,21 +105,21 @@ def create_print(series_name):
         else:
             funct_body += print_s
             
-    funct = funct_header + funct_body[0:-4] + '}'
+    funct = funct_header + funct_body[:-1] + '}'
     
     return funct
 
 '''creats the parse function, takes in the series name, the log lenth and the log number'''    
 def create_parse(series_name, log_len, log_number):
-    funct_header = 'static int vt_parse_' + series_name + '_info(int argc, char **argv, struct command *cmd, struct plugin *plugin) {\n    '
-    funct_body = 'OPT_ARGS(opts) = {\n        OPT_END()\n    };\n\n    '
-    funct_body += 'int fd = parse_and_open(argc, argv, "", opts);\n    if(fd < 0) {\n        '
-    funct_body += 'printf("Error parse and open (fd = %d)\\n", fd);\n        return -1;\n    }\n\n    '
-    funct_body += 'int log_len = ' + str(log_len) + ';\n    unsigned char* log_data = malloc(log_len);\n    '
-    funct_body += 'int err = nvme_get_log(fd, NVME_NSID_ALL, ' + str(log_number) + ', 0, 1, log_len, log_data);\n\n    '
-    funct_body += 'if (err != 0) {\n        printf("Invalid log page access!\\n");\n    } else {\n        '
-    funct_body += series_name + ' data_block;\n        memcpy(&data_block, log_data, sizeof(data_block));\n        '
-    funct_body += 'print_' + series_name +'(&data_block);\n    }\n\n    free(log_data);\n\n    return err;\n}'
+    funct_header = 'static int vt_parse_' + series_name + '_info(int argc, char **argv, struct command *cmd, struct plugin *plugin) {\n\t'
+    funct_body = 'OPT_ARGS(opts) = {\n\t\tOPT_END()\n\t};\n\n\t'
+    funct_body += 'int fd = parse_and_open(argc, argv, "", opts);\n\tif(fd < 0) {\n\t\t'
+    funct_body += 'printf("Error parse and open (fd = %d)\\n", fd);\n\t\treturn -1;\n\t}\n\n\t'
+    funct_body += 'int log_len = ' + str(log_len) + ';\n\tunsigned char* log_data = malloc(log_len);\n\t'
+    funct_body += 'int err = nvme_get_log(fd, NVME_NSID_ALL, ' + str(log_number) + ', 0, 1, log_len, log_data);\n\n\t'
+    funct_body += 'if (err != 0) {\n\t\tprintf("Invalid log page access!\\n");\n\t} else {\n\t\t'
+    funct_body += series_name + ' data_block;\n\t\tmemcpy(&data_block, log_data, sizeof(data_block));\n\t\t'
+    funct_body += 'print_' + series_name +'(&data_block);\n\t}\n\n\tfree(log_data);\n\n\treturn err;\n}'
 
     return funct_header + funct_body
 
